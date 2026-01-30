@@ -1,0 +1,2002 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FORTIB – Fórum de Turismo da Ibiapaba | Desenvolvimento Regional</title>
+    <meta name="description" content="Fórum de Turismo da Ibiapaba - Fortalecendo o turismo sustentável, cultural e econômico da Serra da Ibiapaba.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --verde-vibrante: #07a56a;
+            --laranja-explosivo: #fe6d00;
+            --amarelo-solar: #f0b710;
+            --azul-profundo: #0078a5;
+            --branco: #ffffff;
+            --preto: #111111;
+            --cinza-claro: #f8f9fa;
+            --sombra-ativa: rgba(0, 0, 0, 0.1);
+            --sombra-suave: rgba(0, 0, 0, 0.05);
+            --fonte-principal: 'Inter', sans-serif;
+            --fonte-destaque: 'Poppins', sans-serif;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            font-size: 16px;
+        }
+
+        body {
+            font-family: var(--fonte-principal);
+            color: var(--preto);
+            line-height: 1.5;
+            background-color: var(--branco);
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                radial-gradient(circle at 20% 80%, rgba(7, 165, 106, 0.15) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(254, 109, 0, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 40% 40%, rgba(240, 183, 16, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 60% 60%, rgba(0, 120, 165, 0.1) 0%, transparent 50%);
+            z-index: -1;
+        }
+
+        h1, h2, h3, h4, h5 {
+            font-family: var(--fonte-destaque);
+            font-weight: 700;
+            line-height: 1.2;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1300px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        section {
+            padding: 70px 0;
+            position: relative;
+        }
+
+        .section-divider {
+            height: 6px;
+            background: linear-gradient(90deg, 
+                var(--verde-vibrante) 0%, 
+                var(--laranja-explosivo) 25%, 
+                var(--amarelo-solar) 50%, 
+                var(--azul-profundo) 75%, 
+                var(--verde-vibrante) 100%);
+            border-radius: 3px;
+            margin: 0 auto 50px;
+            width: 90%;
+            max-width: 600px;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .section-title h2 {
+            font-size: 2.2rem;
+            text-transform: uppercase;
+            letter-spacing: -0.5px;
+        }
+
+        /* Cores alternadas para títulos */
+        #home .section-title h2 { color: var(--verde-vibrante); }
+        #quem-somos .section-title h2 { color: var(--laranja-explosivo); }
+        #diretoria .section-title h2 { color: var(--amarelo-solar); }
+        #ibiapaba .section-title h2 { color: var(--azul-profundo); }
+        #noticias .section-title h2 { color: var(--verde-vibrante); }
+        #projetos .section-title h2 { color: var(--laranja-explosivo); }
+        #associados .section-title h2 { color: var(--amarelo-solar); }
+        #transparencia .section-title h2 { color: var(--azul-profundo); }
+        #contato .section-title h2 { color: var(--verde-vibrante); }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 14px 28px;
+            border-radius: 50px;
+            font-weight: 700;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            font-size: 1rem;
+            position: relative;
+            overflow: hidden;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            gap: 8px;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--verde-vibrante) 0%, #06c184 100%);
+            color: var(--branco);
+            box-shadow: 0 5px 15px rgba(7, 165, 106, 0.3);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px) scale(1.02);
+            box-shadow: 0 8px 25px rgba(7, 165, 106, 0.4);
+        }
+
+        .btn-accent {
+            background: linear-gradient(135deg, var(--laranja-explosivo) 0%, #ff8c42 100%);
+            color: var(--branco);
+            box-shadow: 0 5px 15px rgba(254, 109, 0, 0.3);
+        }
+
+        .btn-accent:hover {
+            transform: translateY(-3px) scale(1.02);
+            box-shadow: 0 8px 25px rgba(254, 109, 0, 0.4);
+        }
+
+        /* HEADER OTIMIZADO PARA MOBILE */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background: var(--branco);
+            z-index: 1000;
+            transition: all 0.3s ease;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+            padding: 8px 0;
+        }
+
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 15px;
+            height: 60px;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            text-decoration: none;
+        }
+
+        .logo-img {
+            height: 45px;
+            width: auto;
+        }
+
+        .logo-text {
+            font-family: var(--fonte-destaque);
+            font-weight: 800;
+            font-size: 1.3rem;
+            color: var(--preto);
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 5px;
+        }
+
+        nav li {
+            position: relative;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: var(--preto);
+            font-weight: 600;
+            font-size: 0.85rem;
+            padding: 8px 12px;
+            border-radius: 4px;
+            transition: all 0.2s ease;
+            display: block;
+        }
+
+        nav a:hover {
+            background-color: var(--cinza-claro);
+            color: var(--verde-vibrante);
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            color: var(--verde-vibrante);
+            cursor: pointer;
+            width: 40px;
+            height: 40px;
+            border-radius: 4px;
+            transition: all 0.3s ease;
+        }
+
+        .mobile-menu-btn:hover {
+            background-color: rgba(7, 165, 106, 0.1);
+        }
+
+        /* HOME / BANNER OTIMIZADO */
+        #home {
+            padding-top: 80px;
+            padding-bottom: 60px;
+        }
+
+        .banner {
+            position: relative;
+            background: linear-gradient(135deg, rgba(7, 165, 106, 0.1), rgba(0, 120, 165, 0.1));
+            border-radius: 16px;
+            padding: 40px 20px;
+            text-align: center;
+            margin-bottom: 50px;
+            overflow: hidden;
+        }
+
+        .banner h1 {
+            font-size: 2rem;
+            margin-bottom: 20px;
+            color: var(--preto);
+            line-height: 1.1;
+        }
+
+        .banner p {
+            font-size: 1.1rem;
+            max-width: 700px;
+            margin: 0 auto 30px;
+            color: var(--preto);
+            font-weight: 500;
+        }
+
+        .banner-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        .intro-text {
+            max-width: 900px;
+            margin: 0 auto 50px;
+            text-align: center;
+            font-size: 1.1rem;
+            color: var(--preto);
+            padding: 25px 20px;
+            background: var(--branco);
+            border-radius: 16px;
+            box-shadow: 0 10px 25px var(--sombra-suave);
+            position: relative;
+        }
+
+        /* NOTÍCIAS OTIMIZADAS */
+        .news-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 25px;
+            margin-bottom: 40px;
+        }
+
+        .news-card {
+            background: var(--branco);
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 8px 25px var(--sombra-ativa);
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .news-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.12);
+        }
+
+        .news-image {
+            height: 180px;
+            width: 100%;
+            object-fit: cover;
+        }
+
+        .news-content {
+            padding: 20px;
+            position: relative;
+        }
+
+        .news-category {
+            position: absolute;
+            top: -12px;
+            left: 20px;
+            padding: 6px 16px;
+            border-radius: 20px;
+            font-weight: 700;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            color: var(--branco);
+        }
+
+        .news-category.eventos { background-color: var(--laranja-explosivo); }
+        .news-category.projetos { background-color: var(--verde-vibrante); }
+        .news-category.editais { background-color: var(--azul-profundo); }
+        .news-category.turismo { background-color: var(--amarelo-solar); color: var(--preto); }
+
+        .news-content h3 {
+            font-size: 1.2rem;
+            margin-bottom: 12px;
+            color: var(--preto);
+            min-height: auto;
+        }
+
+        .news-content p {
+            color: #555;
+            margin-bottom: 15px;
+            font-size: 0.95rem;
+        }
+
+        .news-date {
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: var(--verde-vibrante);
+        }
+
+        .news-categories {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 30px;
+            padding: 0 10px;
+        }
+
+        .category-btn {
+            padding: 10px 20px;
+            background-color: var(--branco);
+            border-radius: 30px;
+            border: 2px solid #eee;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.2s ease;
+            font-size: 0.9rem;
+        }
+
+        .category-btn.active, .category-btn:hover {
+            color: var(--branco);
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        /* QUEM SOMOS OTIMIZADO */
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 40px;
+            align-items: center;
+            margin-bottom: 50px;
+        }
+
+        .about-text p {
+            margin-bottom: 20px;
+            font-size: 1rem;
+        }
+
+        .about-image img {
+            width: 100%;
+            border-radius: 16px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+        }
+
+        .mission-vision-values {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 25px;
+            margin-top: 40px;
+        }
+
+        .value-card {
+            text-align: center;
+            padding: 25px 20px;
+            background: var(--branco);
+            border-radius: 16px;
+            transition: all 0.3s ease;
+            box-shadow: 0 8px 25px var(--sombra-suave);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .value-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.12);
+        }
+
+        .value-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 6px;
+        }
+
+        .value-card:nth-child(1)::before { background: linear-gradient(90deg, var(--verde-vibrante), #06c184); }
+        .value-card:nth-child(2)::before { background: linear-gradient(90deg, var(--azul-profundo), #0093cc); }
+        .value-card:nth-child(3)::before { background: linear-gradient(90deg, var(--laranja-explosivo), #ff8c42); }
+
+        .value-icon {
+            font-size: 2rem;
+            margin-bottom: 15px;
+            display: block;
+        }
+
+        .value-card h4 {
+            margin-bottom: 12px;
+            font-size: 1.3rem;
+        }
+
+        /* DIRETORIA OTIMIZADA */
+        .board-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 30px;
+        }
+
+        .board-card {
+            background-color: var(--branco);
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 8px 25px var(--sombra-ativa);
+            text-align: center;
+            padding-bottom: 20px;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .board-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
+        }
+
+        .board-photo {
+            width: 100%;
+            height: 220px;
+            object-fit: cover;
+            margin-bottom: 15px;
+        }
+
+        .board-card h3 {
+            margin-bottom: 5px;
+            font-size: 1.3rem;
+            padding: 0 15px;
+        }
+
+        .board-card .position {
+            color: var(--verde-vibrante);
+            font-weight: 700;
+            margin-bottom: 15px;
+            font-size: 0.9rem;
+        }
+
+        .board-card p {
+            padding: 0 20px;
+            color: #666;
+            font-size: 0.9rem;
+        }
+
+        /* IBIAPABA OTIMIZADO */
+        .ibiapaba-content {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 40px;
+            align-items: center;
+        }
+
+        .regions-container {
+            margin-top: 25px;
+        }
+
+        .regions-title {
+            font-size: 1.2rem;
+            margin-bottom: 12px;
+            color: var(--azul-profundo);
+            font-weight: 600;
+        }
+
+        .municipalities-grid, .sertoes-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+            gap: 12px;
+            margin-bottom: 25px;
+        }
+
+        .municipality, .sertao {
+            background-color: var(--branco);
+            padding: 12px 8px;
+            text-align: center;
+            border-radius: 10px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            box-shadow: 0 3px 10px var(--sombra-suave);
+            transition: all 0.2s ease;
+            cursor: pointer;
+        }
+
+        .municipality:hover, .sertao:hover { 
+            transform: translateY(-3px);
+            color: var(--branco);
+        }
+
+        /* Cores alternadas para municípios */
+        .municipality:nth-child(8n+1):hover { background-color: var(--verde-vibrante); }
+        .municipality:nth-child(8n+2):hover { background-color: var(--laranja-explosivo); }
+        .municipality:nth-child(8n+3):hover { background-color: var(--amarelo-solar); }
+        .municipality:nth-child(8n+4):hover { background-color: var(--azul-profundo); }
+
+        /* Cores alternadas para sertões */
+        .sertao:nth-child(8n+1):hover { background-color: var(--verde-vibrante); }
+        .sertao:nth-child(8n+2):hover { background-color: var(--laranja-explosivo); }
+        .sertao:nth-child(8n+3):hover { background-color: var(--amarelo-solar); }
+        .sertao:nth-child(8n+4):hover { background-color: var(--azul-profundo); }
+
+        .sertao {
+            background-color: var(--cinza-claro);
+        }
+
+        .highlights {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+            margin-top: 30px;
+        }
+
+        .highlight {
+            text-align: center;
+            padding: 20px 15px;
+            background-color: var(--branco);
+            border-radius: 16px;
+            box-shadow: 0 5px 20px var(--sombra-suave);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .highlight::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+        }
+
+        .highlight:nth-child(1)::before { background-color: var(--verde-vibrante); }
+        .highlight:nth-child(2)::before { background-color: var(--laranja-explosivo); }
+        .highlight:nth-child(3)::before { background-color: var(--amarelo-solar); }
+        .highlight:nth-child(4)::before { background-color: var(--azul-profundo); }
+
+        .highlight:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.12);
+        }
+
+        .highlight h4 {
+            font-size: 1.1rem;
+            margin-bottom: 8px;
+        }
+
+        .highlight p {
+            font-size: 0.9rem;
+        }
+
+        /* PROJETOS OTIMIZADOS */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 25px;
+        }
+
+        .project-card {
+            background-color: var(--branco);
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 8px 25px var(--sombra-ativa);
+            padding: 25px 20px;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .project-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
+        }
+
+        .project-status {
+            display: inline-block;
+            padding: 6px 20px;
+            border-radius: 25px;
+            font-size: 0.85rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .status-ongoing {
+            background-color: rgba(240, 183, 16, 0.2);
+            color: var(--amarelo-solar);
+            border: 2px solid var(--amarelo-solar);
+        }
+
+        .status-completed {
+            background-color: rgba(7, 165, 106, 0.2);
+            color: var(--verde-vibrante);
+            border: 2px solid var(--verde-vibrante);
+        }
+
+        .project-card h3 {
+            margin-bottom: 15px;
+            font-size: 1.3rem;
+        }
+
+        .project-card p {
+            font-size: 0.95rem;
+        }
+
+        .project-progress {
+            margin-top: 20px;
+        }
+
+        .progress-bar {
+            height: 6px;
+            background-color: #eee;
+            border-radius: 3px;
+            overflow: hidden;
+            margin-bottom: 8px;
+        }
+
+        .progress-fill {
+            height: 100%;
+            border-radius: 3px;
+        }
+
+        /* ASSOCIADOS OTIMIZADOS */
+        .associates-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+            gap: 20px;
+            margin-bottom: 40px;
+        }
+
+        .associate-logo {
+            background-color: var(--branco);
+            height: 100px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 16px;
+            font-weight: 700;
+            color: var(--azul-profundo);
+            font-size: 1rem;
+            border: 2px solid #eee;
+            transition: all 0.3s ease;
+            padding: 10px;
+        }
+
+        .associate-logo:hover { 
+            background-color: var(--verde-vibrante); 
+            color: var(--branco);
+            transform: translateY(-5px);
+            border-color: var(--verde-vibrante);
+        }
+
+        .benefits {
+            max-width: 900px;
+            margin: 0 auto 40px;
+            text-align: center;
+            font-size: 1.1rem;
+            padding: 25px 20px;
+            background: var(--branco);
+            border-radius: 16px;
+            box-shadow: 0 10px 25px var(--sombra-suave);
+            position: relative;
+        }
+
+        /* TRANSPARÊNCIA OTIMIZADA */
+        .documents-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 25px;
+        }
+
+        .document-card {
+            background-color: var(--branco);
+            border-radius: 16px;
+            padding: 25px 20px;
+            box-shadow: 0 8px 25px var(--sombra-suave);
+            text-align: center;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .document-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background-color: var(--verde-vibrante);
+        }
+
+        .document-card:nth-child(4n+2)::before { background-color: var(--laranja-explosivo); }
+        .document-card:nth-child(4n+3)::before { background-color: var(--amarelo-solar); }
+        .document-card:nth-child(4n+4)::before { background-color: var(--azul-profundo); }
+
+        .document-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.12);
+        }
+
+        .document-card h4 {
+            margin-bottom: 12px;
+            font-size: 1.2rem;
+        }
+
+        .document-card p {
+            font-size: 0.95rem;
+        }
+
+        .document-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            margin-top: 15px;
+            color: var(--verde-vibrante);
+            font-weight: 700;
+            text-decoration: none;
+            padding: 8px 20px;
+            border-radius: 25px;
+            background: rgba(7, 165, 106, 0.1);
+            transition: all 0.2s ease;
+            font-size: 0.9rem;
+        }
+
+        .document-link:hover {
+            background: rgba(7, 165, 106, 0.2);
+            transform: translateY(-2px);
+        }
+
+        /* CONTATO OTIMIZADO */
+        .contact-container {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 40px;
+        }
+
+        .contact-info h3 {
+            margin-bottom: 25px;
+            font-size: 1.8rem;
+            color: var(--azul-profundo);
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+            padding: 20px;
+            background: var(--branco);
+            border-radius: 16px;
+            box-shadow: 0 5px 20px var(--sombra-suave);
+            transition: all 0.2s ease;
+        }
+
+        .contact-item:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        }
+
+        .contact-icon {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, var(--verde-vibrante), var(--azul-profundo));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 15px;
+            color: var(--branco);
+            font-size: 1.2rem;
+            flex-shrink: 0;
+        }
+
+        .contact-form input,
+        .contact-form textarea,
+        .contact-form select {
+            width: 100%;
+            padding: 15px 20px;
+            margin-bottom: 20px;
+            border: 2px solid #eee;
+            border-radius: 12px;
+            font-family: var(--fonte-principal);
+            font-size: 1rem;
+            transition: all 0.2s ease;
+            background: var(--branco);
+        }
+
+        .contact-form input:focus,
+        .contact-form textarea:focus,
+        .contact-form select:focus {
+            outline: none;
+            border-color: var(--verde-vibrante);
+            box-shadow: 0 0 0 2px rgba(7, 165, 106, 0.2);
+        }
+
+        .contact-form textarea {
+            height: 150px;
+            resize: vertical;
+        }
+
+        .contact-form button {
+            width: 100%;
+            padding: 16px;
+            font-size: 1.1rem;
+        }
+
+        /* FOOTER OTIMIZADO */
+        footer {
+            background: linear-gradient(135deg, var(--azul-profundo) 0%, #005377 100%);
+            color: var(--branco);
+            padding: 50px 0 30px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        footer::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 6px;
+            background: linear-gradient(90deg, 
+                var(--verde-vibrante) 0%, 
+                var(--laranja-explosivo) 25%, 
+                var(--amarelo-solar) 50%, 
+                var(--azul-profundo) 75%, 
+                var(--verde-vibrante) 100%);
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .footer-logo {
+            font-family: var(--fonte-destaque);
+            font-size: 2rem;
+            font-weight: 800;
+            color: var(--branco);
+            margin-bottom: 15px;
+        }
+
+        .footer-description {
+            opacity: 0.9;
+            margin-bottom: 25px;
+            font-size: 1rem;
+            line-height: 1.6;
+        }
+
+        .footer-title {
+            color: var(--branco);
+            margin-bottom: 20px;
+            font-size: 1.2rem;
+            position: relative;
+            padding-bottom: 8px;
+        }
+
+        .footer-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 40px;
+            height: 2px;
+            background-color: var(--verde-vibrante);
+        }
+
+        .footer-links li {
+            list-style: none;
+            margin-bottom: 12px;
+        }
+
+        .footer-links a {
+            color: rgba(255, 255, 255, 0.8);
+            text-decoration: none;
+            transition: all 0.2s ease;
+            font-size: 0.95rem;
+        }
+
+        .footer-links a:hover {
+            color: var(--branco);
+        }
+
+        .social-links {
+            display: flex;
+            gap: 12px;
+            margin-top: 25px;
+        }
+
+        .social-icon-footer {
+            width: 45px;
+            height: 45px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--branco);
+            text-decoration: none;
+            font-size: 1.1rem;
+            transition: all 0.2s ease;
+        }
+
+        .social-icon-footer:hover {
+            background-color: var(--verde-vibrante);
+            transform: translateY(-3px);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            opacity: 0.8;
+            font-size: 0.9rem;
+        }
+
+        /* MOBILE MENU */
+        @media (max-width: 768px) {
+            .container {
+                padding: 0 15px;
+            }
+            
+            section {
+                padding: 50px 0;
+            }
+            
+            .section-title h2 {
+                font-size: 1.8rem;
+            }
+            
+            .section-divider {
+                margin-bottom: 35px;
+            }
+            
+            /* Header mobile otimizado */
+            .header-container {
+                padding: 0 10px;
+                height: 55px;
+            }
+            
+            .logo-img {
+                height: 40px;
+            }
+            
+            .logo-text {
+                font-size: 1.1rem;
+            }
+            
+            nav ul {
+                position: fixed;
+                top: 55px;
+                left: 0;
+                width: 100%;
+                background-color: var(--branco);
+                flex-direction: column;
+                align-items: center;
+                padding: 20px 0;
+                box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+                transform: translateY(-100%);
+                opacity: 0;
+                transition: all 0.3s ease;
+                z-index: 999;
+                max-height: calc(100vh - 55px);
+                overflow-y: auto;
+            }
+
+            nav ul.active {
+                transform: translateY(0);
+                opacity: 1;
+            }
+
+            nav li {
+                margin: 0;
+                width: 100%;
+                border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+            }
+
+            nav a {
+                text-align: left;
+                padding: 15px 20px;
+                font-size: 1rem;
+                width: 100%;
+            }
+
+            .mobile-menu-btn {
+                display: block;
+            }
+            
+            /* Banner mobile */
+            .banner {
+                padding: 30px 15px;
+                margin-bottom: 35px;
+            }
+            
+            .banner h1 {
+                font-size: 1.6rem;
+                margin-bottom: 15px;
+            }
+            
+            .banner p {
+                font-size: 1rem;
+                margin-bottom: 25px;
+            }
+            
+            .banner-buttons {
+                flex-direction: column;
+                gap: 12px;
+            }
+            
+            .banner-buttons .btn {
+                width: 100%;
+                max-width: 280px;
+                margin: 0 auto;
+            }
+            
+            /* Intro text */
+            .intro-text {
+                padding: 20px 15px;
+                font-size: 1rem;
+                margin-bottom: 40px;
+            }
+            
+            /* News grid mobile */
+            .news-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+            
+            .news-image {
+                height: 160px;
+            }
+            
+            /* Categories */
+            .news-categories {
+                justify-content: flex-start;
+                overflow-x: auto;
+                padding-bottom: 15px;
+                margin-bottom: 25px;
+                -webkit-overflow-scrolling: touch;
+            }
+            
+            .category-btn {
+                padding: 8px 16px;
+                font-size: 0.85rem;
+                white-space: nowrap;
+            }
+            
+            /* Board grid mobile */
+            .board-grid {
+                grid-template-columns: 1fr;
+                gap: 25px;
+            }
+            
+            /* Municipalities and sertões */
+            .municipalities-grid, .sertoes-grid {
+                grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
+                gap: 10px;
+            }
+            
+            .municipality, .sertao {
+                padding: 10px 5px;
+                font-size: 0.85rem;
+            }
+            
+            /* Highlights */
+            .highlights {
+                grid-template-columns: 1fr;
+                gap: 15px;
+            }
+            
+            /* Projects grid */
+            .projects-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+            
+            /* Associates grid */
+            .associates-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 15px;
+            }
+            
+            .associate-logo {
+                height: 80px;
+                font-size: 0.9rem;
+            }
+            
+            /* Benefits */
+            .benefits {
+                padding: 20px 15px;
+                font-size: 1rem;
+                margin-bottom: 35px;
+            }
+            
+            /* Documents grid */
+            .documents-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+            
+            /* Contact */
+            .contact-info h3 {
+                font-size: 1.6rem;
+            }
+            
+            .contact-item {
+                padding: 15px;
+                margin-bottom: 15px;
+            }
+            
+            .contact-icon {
+                width: 45px;
+                height: 45px;
+                margin-right: 12px;
+                font-size: 1.1rem;
+            }
+            
+            /* Footer */
+            footer {
+                padding: 40px 0 25px;
+            }
+            
+            .footer-content {
+                gap: 35px;
+            }
+            
+            .social-icon-footer {
+                width: 40px;
+                height: 40px;
+                font-size: 1rem;
+            }
+        }
+
+        /* SMALL MOBILE */
+        @media (max-width: 480px) {
+            .section-title h2 {
+                font-size: 1.6rem;
+            }
+            
+            .banner h1 {
+                font-size: 1.4rem;
+            }
+            
+            .btn {
+                padding: 12px 24px;
+                font-size: 0.95rem;
+            }
+            
+            .municipalities-grid, .sertoes-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .municipality, .sertao {
+                font-size: 0.8rem;
+                padding: 8px 4px;
+            }
+            
+            .regions-title {
+                font-size: 1.1rem;
+            }
+            
+            .associates-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 12px;
+            }
+            
+            .associate-logo {
+                height: 70px;
+                font-size: 0.85rem;
+            }
+            
+            .contact-form input,
+            .contact-form textarea,
+            .contact-form select {
+                padding: 12px 16px;
+                font-size: 0.95rem;
+            }
+        }
+
+        /* ANIMAÇÕES LEVES */
+        .fade-in {
+            animation: fadeIn 0.6s ease forwards;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(15px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+<body>
+    <!-- HEADER -->
+    <header>
+        <div class="container header-container">
+            <a href="#home" class="logo">
+                <img src="logo.png" alt="FORTIB - Fórum de Turismo da Ibiapaba" class="logo-img">
+            </a>
+            <button class="mobile-menu-btn" id="mobileMenuBtn">☰</button>
+            <nav>
+                <ul id="mainMenu">
+                    <li><a href="#home">Início</a></li>
+                    <li><a href="#quem-somos">Quem Somos</a></li>
+                    <li><a href="#diretoria">Diretoria</a></li>
+                    <li><a href="#ibiapaba">A Ibiapaba</a></li>
+                    <li><a href="#noticias">Notícias</a></li>
+                    <li><a href="#projetos">Projetos</a></li>
+                    <li><a href="#associados">Associados</a></li>
+                    <li><a href="#transparencia">Transparência</a></li>
+                    <li><a href="#contato">Contato</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- HOME -->
+    <section id="home">
+        <div class="container">
+            <div class="banner">
+                <h1>FORTIB</h1>
+                <h1>Fórum de Turismo da Ibiapaba</h1>
+                <p>Unindo municípios, empresas e comunidade para desenvolver o turismo regional de forma sustentável e inovadora.</p>
+                <div class="banner-buttons">
+                    <a href="#quem-somos" class="btn btn-primary">Conheça o FORTIB</a>
+                    <a href="#noticias" class="btn btn-accent">Ver Notícias</a>
+                </div>
+            </div>
+
+            <div class="intro-text fade-in">
+                <p>O <strong>Fórum de Turismo da Ibiapaba (FORTIB)</strong> é uma entidade colaborativa que reúne gestores públicos, empresários e sociedade civil com o objetivo de promover o desenvolvimento turístico sustentável da região da Ibiapaba, potencializando seus recursos naturais, culturais e humanos através de inovação e criatividade.</p>
+            </div>
+
+            <div class="section-divider"></div>
+
+            <div class="section-title">
+                <h2>Últimas Notícias</h2>
+            </div>
+            <div class="news-grid">
+                <article class="news-card fade-in">
+                    <img src="noticia-1.png" alt="Reunião anual define prioridades para 2024" class="news-image">
+                    <div class="news-content">
+                        <div class="news-category eventos">Eventos</div>
+                        <h3>Reunião anual define prioridades para 2024</h3>
+                        <p>Encontro reuniu representantes dos 14 municípios para traçar planos de ações conjuntas no turismo regional.</p>
+                        <div class="news-date">15 de março, 2024</div>
+                    </div>
+                </article>
+                <article class="news-card fade-in">
+                    <img src="noticia-2.png" alt="Festival Gastronômico da Ibiapaba tem recorde de visitantes" class="news-image">
+                    <div class="news-content">
+                        <div class="news-category eventos">Eventos</div>
+                        <h3>Festival Gastronômico da Ibiapaba tem recorde de visitantes</h3>
+                        <p>Evento promovido pelo FORTIB e parceiros atraiu mais de 5 mil pessoas e movimentou a economia local.</p>
+                        <div class="news-date">28 de fevereiro, 2024</div>
+                    </div>
+                </article>
+                <article class="news-card fade-in">
+                    <img src="noticia-3.png" alt="Nova trilha ecológica é inaugurada na Serra Grande" class="news-image">
+                    <div class="news-content">
+                        <div class="news-category projetos">Projetos</div>
+                        <h3>Nova trilha ecológica é inaugurada na Serra Grande</h3>
+                        <p>Projeto desenvolvido em parceria com comunidades locais oferece nova opção de ecoturismo na região.</p>
+                        <div class="news-date">10 de fevereiro, 2024</div>
+                    </div>
+                </article>
+            </div>
+
+            <div class="section-divider"></div>
+
+            <div class="section-title">
+                <h2>Junte-se a nós</h2>
+            </div>
+            <div class="benefits">
+                <p>Seja parte ativa do desenvolvimento turístico da Ibiapaba. Associe-se ao FORTIB e tenha acesso a capacitações, networking, visibilidade e apoio para seus projetos.</p>
+                <a href="#associados" class="btn btn-accent" style="margin-top: 20px;">Quero ser associado</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- QUEM SOMOS -->
+    <section id="quem-somos">
+        <div class="section-divider"></div>
+        <div class="container">
+            <div class="section-title">
+                <h2>Quem Somos</h2>
+            </div>
+            <div class="about-content">
+                <div class="about-text">
+                    <p>O Fórum de Turismo da Ibiapaba (FORTIB) foi fundado em 2015 com o objetivo de integrar e fortalecer as ações de turismo na região da Serra da Ibiapaba, localizada entre os estados do Ceará e Piauí.</p>
+                    <p>Somos uma entidade supramunicipal que reúne poder público, iniciativa privada, terceiro setor e comunidade para planejar, promover e desenvolver o turismo de forma sustentável, valorizando a cultura local, a biodiversidade e as potencialidades econômicas da região.</p>
+                    <p>Atuamos como articulador de políticas públicas, fomentador de negócios e promotor da identidade turística da Ibiapaba, trabalhando para que o turismo seja vetor de desenvolvimento social e econômico para todos os municípios envolvidos.</p>
+                </div>
+                <div class="about-image">
+                    <img src="quem-somos.png" alt="Reunião do FORTIB">
+                </div>
+            </div>
+
+            <div class="mission-vision-values">
+                <div class="value-card fade-in">
+                    <div class="value-icon">🎯</div>
+                    <h4>Missão</h4>
+                    <p>Promover o desenvolvimento integrado e sustentável do turismo na Ibiapaba, articulando atores e recursos para gerar benefícios sociais, culturais e econômicos para a região.</p>
+                </div>
+                <div class="value-card fade-in">
+                    <div class="value-icon">👁️</div>
+                    <h4>Visão</h4>
+                    <p>Ser referência em fomento ao turismo regional até 2030, tornando a Ibiapaba um destino turístico consolidado no Nordeste brasileiro.</p>
+                </div>
+                <div class="value-card fade-in">
+                    <div class="value-icon">💎</div>
+                    <h4>Valores</h4>
+                    <p>Sustentabilidade, cooperação regional, respeito à cultura local, transparência, inovação e compromisso com o desenvolvimento socioeconômico.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- DIRETORIA -->
+    <section id="diretoria">
+        <div class="section-divider"></div>
+        <div class="container">
+            <div class="section-title">
+                <h2>Diretoria e Governança</h2>
+            </div>
+            <div class="board-grid">
+                <div class="board-card fade-in">
+                    <img src="diretoria-1.png" alt="Presidente" class="board-photo">
+                    <h3>Maria Silva Santos</h3>
+                    <div class="position">Presidente</div>
+                    <p>Empresária do setor hoteleiro com 20 anos de experiência, atua no turismo regional desde 2005.</p>
+                </div>
+                <div class="board-card fade-in">
+                    <img src="diretoria-2.png" alt="Vice-presidente" class="board-photo">
+                    <h3>João Pereira Almeida</h3>
+                    <div class="position">Vice-presidente</div>
+                    <p>Secretário de Turismo de Tianguá, gestor público com especialização em desenvolvimento regional.</p>
+                </div>
+                <div class="board-card fade-in">
+                    <img src="diretoria-3.png" alt="Diretora Financeira" class="board-photo">
+                    <h3>Ana Clara Montenegro</h3>
+                    <div class="position">Diretora Financeira</div>
+                    <p>Contadora e consultora, especialista em gestão de recursos para entidades do terceiro setor.</p>
+                </div>
+                <div class="board-card fade-in">
+                    <img src="diretoria-4.png" alt="Diretor de Projetos" class="board-photo">
+                    <h3>Carlos Eduardo Lima</h3>
+                    <div class="position">Diretor de Projetos</div>
+                    <p>Engenheiro com MBA em Gestão de Projetos, coordena as ações e captação de recursos do FORTIB.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- IBIAPABA -->
+    <section id="ibiapaba">
+        <div class="section-divider"></div>
+        <div class="container">
+            <div class="section-title">
+                <h2>A Ibiapaba</h2>
+            </div>
+            <div class="ibiapaba-content">
+                <div>
+                    <p>A Serra da Ibiapaba é um dos destinos mais surpreendentes do Nordeste brasileiro, situada na divisa entre Ceará e Piauí. Com altitude que chega a 950 metros, oferece clima ameno, paisagens deslumbrantes e rica biodiversidade.</p>
+                    <p>Conhecida como "Serra Grande", a região possui atrativos naturais como cachoeiras, cavernas, trilhas e mirantes com vistas panorâmicas. Sua cultura é marcada por tradições indígenas e colonização portuguesa, refletida na arquitetura, festas populares e culinária única.</p>
+                    <p>O FORTIB atua nos 8 municípios e 8 sertões que compõem a região da Ibiapaba cearense, trabalhando para integrar e promover todo o potencial turístico dessa terra de contrastes e belezas.</p>
+                    
+                    <div class="regions-container">
+                        <h3 class="regions-title">Municípios da Ibiapaba Cearense</h3>
+                        <div class="municipalities-grid">
+                            <div class="municipality">Viçosa do Ceará</div>
+                            <div class="municipality">Tianguá</div>
+                            <div class="municipality">Ubajara</div>
+                            <div class="municipality">Ibiapina</div>
+                            <div class="municipality">São Benedito</div>
+                            <div class="municipality">Carnaubal</div>
+                            <div class="municipality">Guaraciaba do Norte</div>
+                            <div class="municipality">Croatá</div>
+                        </div>
+                        
+                        <h3 class="regions-title">Sertões da Ibiapaba Cearense</h3>
+                        <div class="sertoes-grid">
+                            <div class="sertao">Frecheirinha</div>
+                            <div class="sertao">Mucambo</div>
+                            <div class="sertao">Graça</div>
+                            <div class="sertao">Pacujá</div>
+                            <div class="sertao">Reriutaba</div>
+                            <div class="sertao">Pires Ferreira</div>
+                            <div class="sertao">Ipu</div>
+                            <div class="sertao">Ipueiras</div>
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <img src="ibiapaba.jpg" alt="Serra da Ibiapaba" style="width:100%; border-radius:16px; margin-top: 20px;">
+                    
+                    <div class="highlights">
+                        <div class="highlight">
+                            <h4>Ecoturismo</h4>
+                            <p>Trilhas, cachoeiras, cavernas e parques naturais.</p>
+                        </div>
+                        <div class="highlight">
+                            <h4>Cultura</h4>
+                            <p>Festas tradicionais, artesanato e patrimônio histórico.</p>
+                        </div>
+                        <div class="highlight">
+                            <h4>Gastronomia</h4>
+                            <p>Sabores únicos da serra com ingredientes regionais.</p>
+                        </div>
+                        <div class="highlight">
+                            <h4>Eventos</h4>
+                            <p>Festivais, feiras e celebrações durante todo o ano.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- NOTÍCIAS -->
+    <section id="noticias">
+        <div class="section-divider"></div>
+        <div class="container">
+            <div class="section-title">
+                <h2>Notícias</h2>
+            </div>
+            
+            <div class="news-categories">
+                <button class="category-btn active" data-category="all">Todas</button>
+                <button class="category-btn" data-category="eventos">Eventos</button>
+                <button class="category-btn" data-category="projetos">Projetos</button>
+                <button class="category-btn" data-category="editais">Editais</button>
+                <button class="category-btn" data-category="turismo">Turismo</button>
+            </div>
+            
+            <div class="news-grid" id="newsContainer">
+                <!-- Notícias serão carregadas via JavaScript -->
+            </div>
+        </div>
+    </section>
+
+    <!-- PROJETOS -->
+    <section id="projetos">
+        <div class="section-divider"></div>
+        <div class="container">
+            <div class="section-title">
+                <h2>Projetos e Ações</h2>
+            </div>
+            <div class="projects-grid">
+                <div class="project-card fade-in">
+                    <div class="project-status status-ongoing">Em andamento</div>
+                    <h3>Roteiros Integrados da Ibiapaba</h3>
+                    <p>Criação de circuitos turísticos que integram atrativos de múltiplos municípios, com sinalização, capacitação de condutores e material promocional.</p>
+                    <div class="project-progress">
+                        <div class="progress-bar">
+                            <div class="progress-fill" style="width: 65%; background-color: var(--verde-vibrante);"></div>
+                        </div>
+                        <div>65% concluído</div>
+                    </div>
+                </div>
+                <div class="project-card fade-in">
+                    <div class="project-status status-completed">Concluído</div>
+                    <h3>Plataforma Digital de Turismo</h3>
+                    <p>Desenvolvimento de site e aplicativo com informações turísticas atualizadas, roteiros, hospedagens e serviços da região.</p>
+                    <div class="project-progress">
+                        <div class="progress-bar">
+                            <div class="progress-fill" style="width: 100%; background-color: var(--laranja-explosivo);"></div>
+                        </div>
+                        <div>100% concluído</div>
+                    </div>
+                </div>
+                <div class="project-card fade-in">
+                    <div class="project-status status-ongoing">Em andamento</div>
+                    <h3>Qualificação em Gestão Hoteleira</h3>
+                    <p>Capacitação de empreendedores e funcionários do setor hoteleiro e de alimentação para melhoria da qualidade dos serviços.</p>
+                    <div class="project-progress">
+                        <div class="progress-bar">
+                            <div class="progress-fill" style="width: 40%; background-color: var(--amarelo-solar);"></div>
+                        </div>
+                        <div>40% concluído</div>
+                    </div>
+                </div>
+                <div class="project-card fade-in">
+                    <div class="project-status status-ongoing">Em andamento</div>
+                    <h3>Feira Regional de Turismo</h3>
+                    <p>Organização de feira anual para promoção dos destinos, produtos e serviços turísticos da Ibiapaba para operadoras e público geral.</p>
+                    <div class="project-progress">
+                        <div class="progress-bar">
+                            <div class="progress-fill" style="width: 80%; background-color: var(--azul-profundo);"></div>
+                        </div>
+                        <div>80% concluído</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ASSOCIADOS -->
+    <section id="associados">
+        <div class="section-divider"></div>
+        <div class="container">
+            <div class="section-title">
+                <h2>Associados</h2>
+            </div>
+            
+            <div class="benefits">
+                <p>Associe-se ao FORTIB e faça parte da transformação do turismo na Ibiapaba. Como associado, você terá:</p>
+            </div>
+            
+            <div class="highlights" style="margin-bottom: 40px;">
+                <div class="highlight">
+                    <h4>Networking</h4>
+                    <p>Conexões com empresas e gestores públicos do setor turístico.</p>
+                </div>
+                <div class="highlight">
+                    <h4>Capacitação</h4>
+                    <p>Acesso a cursos, workshops e treinamentos exclusivos.</p>
+                </div>
+                <div class="highlight">
+                    <h4>Visibilidade</h4>
+                    <p>Divulgação em nossos canais e materiais promocionais.</p>
+                </div>
+                <div class="highlight">
+                    <h4>Participação</h4>
+                    <p>Voz ativa nas decisões e projetos do fórum.</p>
+                </div>
+            </div>
+            
+            <div class="associates-grid">
+                <div class="associate-logo">Hotel Serra</div>
+                <div class="associate-logo">Pousada Verde</div>
+                <div class="associate-logo">Restaurante Sabor da Serra</div>
+                <div class="associate-logo">Agência Aventura</div>
+                <div class="associate-logo">Prefeitura de Ubajara</div>
+                <div class="associate-logo">Art & Craft</div>
+                <div class="associate-logo">Transporte Turismo</div>
+                <div class="associate-logo">Café da Montanha</div>
+            </div>
+            
+            <div style="text-align: center; margin-top: 40px;">
+                <a href="#contato" class="btn btn-accent">Quero ser associado</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- TRANSPARÊNCIA -->
+    <section id="transparencia">
+        <div class="section-divider"></div>
+        <div class="container">
+            <div class="section-title">
+                <h2>Transparência</h2>
+            </div>
+            <div class="documents-grid">
+                <div class="document-card fade-in">
+                    <h4>Estatuto Social</h4>
+                    <p>Documento regulamentador do FORTIB</p>
+                    <a href="#" class="document-link">Baixar PDF</a>
+                </div>
+                <div class="document-card fade-in">
+                    <h4>Prestação de Contas 2023</h4>
+                    <p>Demonstrativos financeiros do exercício</p>
+                    <a href="#" class="document-link">Baixar PDF</a>
+                </div>
+                <div class="document-card fade-in">
+                    <h4>Atas de Reunião</h4>
+                    <p>Registro das assembleias e reuniões</p>
+                    <a href="#" class="document-link">Acessar</a>
+                </div>
+                <div class="document-card fade-in">
+                    <h4>Plano de Trabalho 2024</h4>
+                    <p>Objetivos e metas para o ano atual</p>
+                    <a href="#" class="document-link">Baixar PDF</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CONTATO -->
+    <section id="contato">
+        <div class="section-divider"></div>
+        <div class="container">
+            <div class="section-title">
+                <h2>Contato</h2>
+            </div>
+            
+            <div class="contact-container">
+                <div class="contact-info">
+                    <h3>Entre em contato conosco</h3>
+                    <p>Tem interesse em saber mais sobre o FORTIB, tornar-se associado ou colaborar com nossos projetos? Entre em contato!</p>
+                    
+                    <div class="contact-item">
+                        <div class="contact-icon">📍</div>
+                        <div>
+                            <strong>Endereço</strong>
+                            <p>Av. da Ibiapaba, 123 - Centro, Tianguá - CE</p>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-item">
+                        <div class="contact-icon">✉️</div>
+                        <div>
+                            <strong>E-mail</strong>
+                            <p>contato@fortib.org.br</p>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-item">
+                        <div class="contact-icon">📞</div>
+                        <div>
+                            <strong>Telefone</strong>
+                            <p>(88) 3671-1234</p>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-item">
+                        <div class="contact-icon">🕒</div>
+                        <div>
+                            <strong>Horário de Funcionamento</strong>
+                            <p>Segunda a Sexta: 8h às 18h</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="contact-form">
+                    <form id="contactForm">
+                        <input type="text" placeholder="Seu nome completo" required>
+                        <input type="email" placeholder="Seu melhor e-mail" required>
+                        <input type="text" placeholder="Assunto">
+                        <select>
+                            <option value="">Selecione o motivo do contato</option>
+                            <option value="associado">Quero ser associado</option>
+                            <option value="informacoes">Mais informações</option>
+                            <option value="projetos">Parceria em projetos</option>
+                            <option value="outro">Outro</option>
+                        </select>
+                        <textarea placeholder="Sua mensagem..." required></textarea>
+                        <button type="submit" class="btn btn-primary">Enviar mensagem</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div>
+                    <div class="footer-logo">FORTIB</div>
+                    <p class="footer-description">Fórum de Turismo da Ibiapaba - Fortalecendo o turismo sustentável, cultural e econômico da Serra da Ibiapaba através de inovação, criatividade e colaboração regional.</p>
+                    <div class="social-links">
+                        <a href="#" class="social-icon-footer">F</a>
+                        <a href="#" class="social-icon-footer">I</a>
+                        <a href="#" class="social-icon-footer">Y</a>
+                        <a href="#" class="social-icon-footer">L</a>
+                        <a href="#" class="social-icon-footer">M</a>
+                    </div>
+                </div>
+                <div>
+                    <h4 class="footer-title">Links Rápidos</h4>
+                    <ul class="footer-links">
+                        <li><a href="#home">Home</a></li>
+                        <li><a href="#quem-somos">Quem Somos</a></li>
+                        <li><a href="#noticias">Notícias</a></li>
+                        <li><a href="#projetos">Projetos</a></li>
+                        <li><a href="#associados">Associados</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="footer-title">Institucional</h4>
+                    <ul class="footer-links">
+                        <li><a href="#diretoria">Diretoria</a></li>
+                        <li><a href="#transparencia">Transparência</a></li>
+                        <li><a href="#ibiapaba">A Ibiapaba</a></li>
+                        <li><a href="#contato">Contato</a></li>
+                        <li><a href="#home">Estatuto</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>
+                    <span>© <span id="currentYear"></span> FORTIB - Fórum de Turismo da Ibiapaba.</span>
+                    <span>Todos os direitos reservados.</span>
+                    <span>Desenvolvido com dedicação para a Serra da Ibiapaba</span>
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Dados das notícias
+        const newsData = [
+            {
+                id: 1,
+                title: "Reunião anual define prioridades para 2024",
+                summary: "Encontro reuniu representantes dos 14 municípios para traçar planos de ações conjuntas no turismo regional.",
+                date: "15 de março, 2024",
+                category: "eventos",
+                image: "noticia-1.png"
+            },
+            {
+                id: 2,
+                title: "Festival Gastronômico da Ibiapaba tem recorde de visitantes",
+                summary: "Evento promovido pelo FORTIB e parceiros atraiu mais de 5 mil pessoas e movimentou a economia local.",
+                date: "28 de fevereiro, 2024",
+                category: "eventos",
+                image: "noticia-2.png"
+            },
+            {
+                id: 3,
+                title: "Nova trilha ecológica é inaugurada na Serra Grande",
+                summary: "Projeto desenvolvido em parceria com comunidades locais oferece nova opção de ecoturismo na região.",
+                date: "10 de fevereiro, 2024",
+                category: "projetos",
+                image: "noticia-3.png"
+            },
+            {
+                id: 4,
+                title: "Edital de apoio a microempreendedores do turismo",
+                summary: "Inscrições abertas para seleção de projetos que receberão capacitação e apoio financeiro.",
+                date: "5 de fevereiro, 2024",
+                category: "editais",
+                image: "noticia-4.png"
+            },
+            {
+                id: 5,
+                title: "Workshop de marketing digital para o turismo",
+                summary: "Capacitação gratuita ensina estratégias para promover estabelecimentos nas redes sociais.",
+                date: "22 de janeiro, 2024",
+                category: "turismo",
+                image: "noticia-5.png"
+            },
+            {
+                id: 6,
+                title: "Pesquisa revela perfil do turista na Ibiapaba",
+                summary: "Estudo coordenado pelo FORTIB traça características e preferências dos visitantes da região.",
+                date: "10 de janeiro, 2024",
+                category: "turismo",
+                image: "noticia-6.png"
+            },
+            {
+                id: 7,
+                title: "Novo mirante é inaugurado em Ubajara",
+                summary: "Estrutura oferece vista panorâmica de 360° da serra e já se tornou ponto turístico.",
+                date: "5 de janeiro, 2024",
+                category: "projetos",
+                image: "noticia-7.png"
+            },
+            {
+                id: 8,
+                title: "Capacitação em atendimento ao turista",
+                summary: "Curso gratuito capacita mais de 200 profissionais do setor turístico da região.",
+                date: "20 de dezembro, 2023",
+                category: "eventos",
+                image: "noticia-8.png"
+            }
+        ];
+
+        // Elementos DOM
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const mainMenu = document.getElementById('mainMenu');
+        const newsContainer = document.getElementById('newsContainer');
+        const categoryBtns = document.querySelectorAll('.category-btn');
+        const contactForm = document.getElementById('contactForm');
+        const currentYearSpan = document.getElementById('currentYear');
+
+        // Menu mobile
+        mobileMenuBtn.addEventListener('click', () => {
+            mainMenu.classList.toggle('active');
+            mobileMenuBtn.textContent = mainMenu.classList.contains('active') ? '✕' : '☰';
+            document.body.style.overflow = mainMenu.classList.contains('active') ? 'hidden' : 'auto';
+        });
+
+        // Fechar menu ao clicar em um link
+        document.querySelectorAll('nav a').forEach(link => {
+            link.addEventListener('click', () => {
+                mainMenu.classList.remove('active');
+                mobileMenuBtn.textContent = '☰';
+                document.body.style.overflow = 'auto';
+            });
+        });
+
+        // Rolagem suave
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                if(targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if(targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+
+        // Carregar notícias
+        function loadNews(category = 'all') {
+            newsContainer.innerHTML = '';
+            
+            const filteredNews = category === 'all' 
+                ? newsData 
+                : newsData.filter(news => news.category === category);
+            
+            filteredNews.forEach(news => {
+                const newsCard = document.createElement('article');
+                newsCard.className = 'news-card fade-in';
+                newsCard.innerHTML = `
+                    <img src="${news.image}" alt="${news.title}" class="news-image">
+                    <div class="news-content">
+                        <div class="news-category ${news.category}">${news.category.charAt(0).toUpperCase() + news.category.slice(1)}</div>
+                        <h3>${news.title}</h3>
+                        <p>${news.summary}</p>
+                        <div class="news-date">${news.date}</div>
+                    </div>
+                `;
+                newsContainer.appendChild(newsCard);
+            });
+        }
+
+        // Filtro de categorias
+        categoryBtns.forEach(btn => {
+            btn.addEventListener('click', function() {
+                // Remove active de todos
+                categoryBtns.forEach(b => b.classList.remove('active'));
+                // Adiciona active no clicado
+                this.classList.add('active');
+                
+                // Carrega notícias da categoria
+                const category = this.getAttribute('data-category');
+                loadNews(category);
+            });
+        });
+
+        // Formulário de contato
+        contactForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Coletar dados do formulário
+            const formData = new FormData(this);
+            const name = document.querySelector('#contactForm input[type="text"]').value || 'Visitante';
+            
+            // Efeito de loading
+            const submitBtn = this.querySelector('button[type="submit"]');
+            const originalText = submitBtn.innerHTML;
+            submitBtn.innerHTML = 'Enviando...';
+            submitBtn.disabled = true;
+            
+            // Simulação de envio com delay
+            setTimeout(() => {
+                // Efeito visual de sucesso
+                submitBtn.innerHTML = 'Enviado!';
+                submitBtn.style.background = 'linear-gradient(135deg, var(--verde-vibrante), #06c184)';
+                
+                // Alert personalizado
+                const alertDiv = document.createElement('div');
+                alertDiv.style.cssText = `
+                    position: fixed;
+                    top: 80px;
+                    right: 15px;
+                    background: linear-gradient(135deg, var(--verde-vibrante), var(--azul-profundo));
+                    color: white;
+                    padding: 15px 20px;
+                    border-radius: 12px;
+                    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+                    z-index: 9999;
+                    font-weight: 600;
+                    animation: slideIn 0.4s ease;
+                    max-width: 300px;
+                `;
+                alertDiv.innerHTML = `Obrigado, ${name}! Sua mensagem foi enviada com sucesso.`;
+                document.body.appendChild(alertDiv);
+                
+                // Remover alerta após 4 segundos
+                setTimeout(() => {
+                    alertDiv.style.animation = 'slideOut 0.4s ease';
+                    setTimeout(() => alertDiv.remove(), 400);
+                }, 4000);
+                
+                // Reset do formulário após 2 segundos
+                setTimeout(() => {
+                    this.reset();
+                    submitBtn.innerHTML = originalText;
+                    submitBtn.disabled = false;
+                    submitBtn.style.background = '';
+                }, 2000);
+                
+                // Adicionar animações CSS
+                const style = document.createElement('style');
+                style.textContent = `
+                    @keyframes slideIn {
+                        from { transform: translateX(100%); opacity: 0; }
+                        to { transform: translateX(0); opacity: 1; }
+                    }
+                    @keyframes slideOut {
+                        from { transform: translateX(0); opacity: 1; }
+                        to { transform: translateX(100%); opacity: 0; }
+                    }
+                `;
+                document.head.appendChild(style);
+                
+            }, 1200);
+        });
+
+        // Ano atual no footer
+        currentYearSpan.textContent = new Date().getFullYear();
+
+        // Animação de entrada com Intersection Observer
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -30px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('fade-in');
+                }
+            });
+        }, observerOptions);
+
+        // Observar elementos para animação
+        document.querySelectorAll('.news-card, .board-card, .project-card, .value-card, .document-card').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Header scroll effect
+        window.addEventListener('scroll', () => {
+            const header = document.querySelector('header');
+            if (window.scrollY > 50) {
+                header.style.boxShadow = '0 3px 15px rgba(0, 0, 0, 0.1)';
+            } else {
+                header.style.boxShadow = '0 1px 5px rgba(0, 0, 0, 0.08)';
+            }
+        });
+
+        // Inicializar notícias
+        loadNews();
+    </script>
+</body>
+</html>
